@@ -5,7 +5,7 @@ let cityElementInput = document.getElementById("cityInput");
 let detailsElementInput = document.getElementById("details");
 let buttonElement = document.getElementById("button");
 
-async function getApi(city) {
+async function fetchWeather(city) {
   const url = new URL("https://api.shecodes.io/weather/v1/current?&b&");
   url.searchParams.set("units", "metric");
   url.searchParams.set("key", "b2a5adcct04b33178913oc335f405433");
@@ -23,7 +23,6 @@ async function getApi(city) {
     detailsElementInput.textContent = "";
   }
 
-
   if (data.temperature.current) {
     temperatureElement.textContent = `${Math.round(
       data.temperature.current
@@ -37,7 +36,7 @@ async function getApi(city) {
 function displayCity() {
   let inputCityValue = cityElementInput.value;
   if (inputCityValue) {
-    getApi(inputCityValue);
+    fetchWeather(inputCityValue);
   } else {
     console.log("Por favor, digite o nome de uma cidade.");
   }
